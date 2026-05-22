@@ -1,0 +1,113 @@
+Тестирование подразделений (departments)
+1. Получить все подразделения
+powershell
+Invoke-RestMethod -Uri "http://localhost:8080/api/departments" -Method GET
+Ожидаемый результат: пустой массив [] (если БД чистая) или список подразделений в виде объекта PowerShell.
+
+2. Создать подразделение
+powershell
+$body = @{
+    name = "IT Department"
+    description = "IT support and development"
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://localhost:8080/api/departments" -Method POST -Body $body -ContentType "application/json"
+Ожидаемый результат: объект с данными созданного подразделения, включая id.
+
+3. Получить подразделение по ID
+Замените <id> на реальный ID из предыдущего ответа:
+
+powershell
+Invoke-RestMethod -Uri "http://localhost:8080/api/departments/<id>" -Method GET
+Ожидаемый результат: JSON с данными подразделения, преобразованный в объект PowerShell.
+
+4. Обновить подразделение
+Замените <id> на нужный ID:
+
+powershell
+$body = @{
+    name = "Updated IT Department"
+    description = "Updated description"
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://localhost:8080/api/departments/<id>" -Method PUT -Body $body -ContentType "application/json"
+Ожидаемый результат: обновлённые данные подразделения.
+
+5. Удалить подразделение
+Замените <id> на нужный ID. Обратите внимание: для метода DELETE ответ 204 No Content может вызвать ошибку в Invoke-RestMethod, поэтому используем -ErrorAction SilentlyContinue:
+
+powershell
+try {
+    Invoke-RestMethod -Uri "http://localhost:8080/api/departments/<id>" -Method DELETE -ErrorAction Stop
+    Write-Host "Department deleted successfully" -ForegroundColor Green
+}
+catch {
+    if ($_.Exception.Response.StatusCode -eq 204) {
+        Write-Host "Department deleted (204 No Content)" -ForegroundColor Green
+    } else {
+        Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
+    }
+}
+
+Тестирование сотрудников (employees)
+1. Получить всех сотрудников
+powershell
+Invoke-RestMethod -Uri "http://localhost:8080/api/employees" -Method GET
+Ожидаемый результат: пустой массив или список сотрудников.
+
+2. Создать сотрудника
+
+$body = @{
+FullName = "John Toth"
+    Position = "Position2"
+    Email = "john.doe@example.com"
+    DepartmentID = 1
+ } | ConvertTo-Json
+
+ Invoke-RestMethod -Uri "http://localhost:8080/api/employees" -Method POST -Body $body -ContentType "application/json"
+
+Ожидаемый результат: объект сотрудника с присвоенным id.
+
+3. Получить сотрудника по ID
+Замените <id> на реальный ID:
+
+powershell
+Invoke-RestMethod -Uri "http://localhost:8080/api/employees/<id>" -Method GET
+Ожидаемый результат: данные сотрудника.
+
+4. Поиск сотрудников
+Поиск по имени (можно использовать другие параметры):
+
+powershell
+Invoke-RestMethod -Uri "http://localhost:8080/api/employees/search?q=John" -Method GET
+Ожидаемый результат: массив сотрудников, соответствующих запросу.
+
+5. Обновить сотрудника
+Замените <id> на нужный ID:
+
+powershell
+$body = @{
+    firstName = "Jane"
+    lastName = "Doe"
+    email = "jane.doe@example.com"
+    departmentID = 1
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://localhost:8080/api/employees/<id>" -Method PUT -Body $body -ContentType "application/json"
+Ожидаемый результат: обновлённые данные сотрудника.
+
+6. Удалить сотрудника
+Аналогично удалению подразделения, обрабатываем 204 No Content:
+
+powershell
+try {
+    Invoke-RestMethod -Uri "http://localhost:8080/api/employees/<id>" -Method DELETE -ErrorAction Stop
+    Write-Host "Employee deleted successfully" -ForegroundColor Green
+}
+catch {
+    if ($_.Exception.Response.StatusCode -eq 204) {
+        Write-Host "Employee deleted (204 No Content)" -ForegroundColor Green
+    } else {
+        Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
+    }
+}

@@ -1,0 +1,19 @@
+[2026-05-21 21:09:08] ERROR: Failed to connect to database: failed to connect to `user=your_username database=employee_management`: 127.0.0.1:5432 (localhost): failed SASL auth: ВАЖНО: пользователь "your_username" не прошёл проверку подлинности (по паролю) (SQLSTATE 28P01)
+[2026-05-21 21:21:32] ERROR: Failed to connect to database: failed to connect to `user=your_username database=employee_management`: 127.0.0.1:5432 (localhost): failed SASL auth: ВАЖНО: пользователь "your_username" не прошёл проверку подлинности (по паролю) (SQLSTATE 28P01)
+[2026-05-21 21:22:28] ERROR: Failed to connect to database: failed to connect to `user=your_username database=employee_management`: 127.0.0.1:5432 (localhost): failed SASL auth: ВАЖНО: пользователь "your_username" не прошёл проверку подлинности (по паролю) (SQLSTATE 28P01)
+[2026-05-21 21:23:46] ERROR: Failed to connect to database: failed to connect to `user=your_username database=employee_management`: 127.0.0.1:5432 (localhost): failed SASL auth: ВАЖНО: пользователь "your_username" не прошёл проверку подлинности (по паролю) (SQLSTATE 28P01)
+[2026-05-21 21:32:11] INFO: Starting database migrations...
+[2026-05-21 21:32:11] INFO: Database migrations completed successfully!
+[2026-05-21 21:32:11] INFO: Server starting on port 8080
+[2026-05-22 19:21:50] INFO: Starting database migrations...
+[2026-05-22 19:21:50] INFO: Database migrations completed successfully!
+[2026-05-22 19:21:50] INFO: Server starting on port 8080
+[2026-05-22 19:26:12] INFO: Starting database migrations...
+[2026-05-22 19:26:12] INFO: Database migrations completed successfully!
+[2026-05-22 19:26:12] INFO: Server starting on port 8080
+[2026-05-22 20:24:21] INFO: Starting database migrations...
+[2026-05-22 20:24:21] INFO: Database migrations completed successfully!
+[2026-05-22 20:24:21] INFO: Server starting on port 8080
+[2026-05-22 21:21:47] INFO: Starting database migrations...
+[2026-05-22 21:21:47] INFO: Database migrations completed successfully!
+[2026-05-22 21:21:47] INFO: Server starting on port 8080
