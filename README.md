@@ -47,5 +47,5 @@
 
 1. **Клонируйте репозиторий:**
 ```bash
-git clone <url-репозитория>
+git clone https://github.com/EvgeniyMokshin/project.git
 cd project-name
